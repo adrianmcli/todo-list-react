@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import List from './components/List';
 
+let iList = [
+	{
+		task: 'Buy water',
+		date: '-',
+		importance: 'High'
+	},
+	{
+		task: 'Buy food',
+		date: '-',
+		importance: 'Low'
+	},
+	{
+		task: 'Feed cat',
+		date: '-',
+		importance: 'High'
+	}
+];
+
 const App = () => {
-	const [list, setList] = useState(['Buy water', 'Buy food', 'Feed cat']);
+	const [list, setList] = useState(iList);
 	const [todoTitle, setTodoTitle] = useState('');
+
+	useEffect(() => setList(list), []);
 
 	const setTitle = (event) => {
 		setTodoTitle(event.target.value);
@@ -11,7 +31,12 @@ const App = () => {
 
 	const addTodo = (event) => {
 		event.preventDefault();
-		setList(list.concat(todoTitle));
+		const newTodo = {
+			task: todoTitle,
+			date: new Date().toDateString(),
+			importance: 'Low'
+		};
+		setList(list.concat(newTodo));
 		setTodoTitle('');
 	};
 

@@ -1,7 +1,11 @@
 import React from 'react';
 
 const List = ({ list, addTodo, setTitle, todoTitle }) => {
-	const renderedList = list.map((item) => <li key={item}>{item}</li>);
+	const renderedList = list.map((item) => (
+		<li key={item.task}>
+			{item.task} <br /> {item.date} <br /> {item.importance}
+		</li>
+	));
 
 	return (
 		<>
